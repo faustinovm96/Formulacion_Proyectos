@@ -65,7 +65,7 @@ public class ProveedorDAOMySQLImple implements ProveedorDAO {
 	                String telefono = rs.getString("telefono");
 	                String email = rs.getString("email");
 	                
-	                Proveedor proveedor = new Proveedor(id, nombres, apellidos, direccion, telefono, email);
+	                Proveedor proveedor = new Proveedor(id, cedula, nombres, apellidos, direccion, telefono, email);
 	                
 	                listaProveedores.add(proveedor);
 	            }
