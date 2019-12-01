@@ -6,9 +6,16 @@ import javax.swing.JDialog;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import dao.ProveedorDAO;
+import dao.ProveedorDAOMySQLImple;
+import dto.Proveedor;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -21,6 +28,9 @@ public class ProveedorFrame extends JDialog {
 	private JTextField txtApellidos;
 	private JTextField txtTelefono;
 	private JTextField txtEmail;
+	private JTextArea txtDireccion;
+	
+	private ProveedorDAO proveedorDAO;
 
 	/**
 	 * Launch the application.
@@ -90,7 +100,24 @@ public class ProveedorFrame extends JDialog {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Hola");
+				
+				String cedulaRUC = txtCedulaRUC.getText();
+				String nombres = txtNombres.getText();
+				String apellidos = txtApellidos.getText();
+				String direccion = txtDireccion.getText();
+				String telefono = txtTelefono.getText();
+				String email = txtEmail.getText();
+				
+				Proveedor proveedor = new Proveedor(0, cedulaRUC, nombres, apellidos, direccion, telefono, email);
+				
+				proveedorDAO = new ProveedorDAOMySQLImple();
+				
+				proveedorDAO.insertarProveedor(proveedor);
+				
+				JOptionPane.showMessageDialog(null, "El Proveedor se ingreso correctamente...");
+				
+				dispose();
+				
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -155,7 +182,7 @@ public class ProveedorFrame extends JDialog {
 					.addContainerGap(98, Short.MAX_VALUE))
 		);
 		
-		JTextArea txtDireccion = new JTextArea();
+		txtDireccion = new JTextArea();
 		scrollPane.setViewportView(txtDireccion);
 		getContentPane().setLayout(groupLayout);
 	}

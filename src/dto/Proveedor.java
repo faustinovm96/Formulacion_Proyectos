@@ -10,9 +10,10 @@ public class Proveedor {
 	private String telefono;
 	private String email;
 	
-	public Proveedor(int idProveedor, String nombres, String apellidos, String direccion, String telefono,
+	public Proveedor(int idProveedor, String cedulaRUC, String nombres, String apellidos, String direccion, String telefono,
 			String email) {
 		this.idProveedor = idProveedor;
+		this.cedularuc = cedulaRUC;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.direccion = direccion;
