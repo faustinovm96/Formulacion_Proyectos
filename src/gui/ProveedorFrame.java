@@ -12,6 +12,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProveedorFrame extends JDialog {
 	private JTextField txtCedulaRUC;
@@ -86,6 +88,11 @@ public class ProveedorFrame extends JDialog {
 		txtEmail.setColumns(10);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Hola");
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JButton btnCancelar = new JButton("Cancelar");
