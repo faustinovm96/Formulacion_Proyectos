@@ -123,6 +123,11 @@ public class ProveedorFrame extends JDialog {
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
