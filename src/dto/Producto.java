@@ -14,13 +14,13 @@ public class Producto {
 	private int idCategoria;
 	
 	public Producto(String codigoProducto, String descripcionProducto, File fotoProducto, double precioCompraProducto,
-			double precioVentaProducto, int cantidadStockProducto, int idProveedor, int idCategoria) {
+			double precioVentaProducto, int cantidadStock, int idProveedor, int idCategoria) {
 		this.codigoProducto = codigoProducto;
 		this.descripcionProducto = descripcionProducto;
 		this.fotoProducto = fotoProducto;
 		this.precioCompraProducto = precioCompraProducto;
 		this.precioVentaProducto = precioVentaProducto;
-		this.cantidadStockProducto = cantidadStockProducto;
+		this.cantidadStockProducto = cantidadStock;
 		this.idProveedor = idProveedor;
 		this.idCategoria = idCategoria;
 	}

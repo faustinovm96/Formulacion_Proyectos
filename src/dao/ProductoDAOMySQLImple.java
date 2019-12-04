@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import dto.Producto;
 import jdbc.Conexion;
@@ -113,14 +115,96 @@ public class ProductoDAOMySQLImple implements ProductoDAO {
 
 	@Override
 	public void actualizarProducto(Producto producto, boolean cambiarFoto) {
-		// TODO Auto-generated method stub
-
+		 try {
+	            conn = Conexion.getConnection();
+	            
+	            if(cambiarFoto==true){
+	                File fileFoto = producto.getFotoProducto();
+	                FileInputStream fis = new FileInputStream(fileFoto);
+	                
+	                String sql = "UPDATE productos SET descripcion_producto = ? , foto= ? , precio_compra = ? , precio_venta = ?, "
+	                        + "cantidad_stock = ? , id_proveedor = ?, id_categoria = ? "
+	                        + "WHERE codigo_producto = ?";
+	                
+	                pstm = conn.prepareStatement(sql);
+	                
+	                pstm.setString(1, producto.getDescripcionProducto());
+	                long tamanoFoto = producto.getFotoProducto().length();
+	                pstm.setBinaryStream(2, fis , tamanoFoto);
+	                
+	                
+	                pstm.setDouble(3, producto.getPrecioCompraProducto());
+	                pstm.setDouble(4, producto.getPrecioVentaProducto());
+	                pstm.setInt(5, producto.getCantidadStockProducto());
+	                pstm.setInt(6, producto.getIdCategoria());
+	                pstm.setInt(7, producto.getIdProveedor());
+	                
+	                pstm.setString(8, producto.getCodigoProducto());
+	                
+	            }else{
+	            	String sql = "UPDATE productos SET descripcion_producto = ?, precio_compra = ? , precio_venta = ?, "
+	                        + "cantidad_stock = ? , id_proveedor = ?, id_categoria = ? "
+	                        + "WHERE codigo_producto = ?";
+	                
+	                pstm = conn.prepareStatement(sql);
+	                
+	                pstm.setString(1, producto.getDescripcionProducto());
+	                pstm.setDouble(2, producto.getPrecioCompraProducto());
+	                pstm.setDouble(3, producto.getPrecioVentaProducto());
+	                pstm.setDouble(4, producto.getCantidadStockProducto());
+	                
+	                pstm.setInt(5, producto.getIdCategoria());
+	                pstm.setInt(6, producto.getIdProveedor());
+	                
+	                pstm.setString(7, producto.getCodigoProducto());
+	                
+	            }
+	            pstm.executeUpdate(); 
+	            
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        } catch (FileNotFoundException ex) {
+	            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+	        } 
+	        finally{
+	            Conexion.close(conn);
+	            Conexion.close(pstm);
+	        }
 	}
 
 	@Override
 	public ArrayList<Producto> obtenerProductos() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        try {
+            conn = Conexion.getConnection();
+            
+            String sql = "SELECT * FROM productos ORDER BY descripcion_producto ";
+            
+            pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            
+            while(rs.next()){
+                String codigoProducto = rs.getString("codigo_producto");
+                String descripcionProducto = rs.getString("descripcion_producto");
+                double precioCompra = rs.getDouble("precio_compra");
+                double precioVenta = rs.getDouble("precio_venta");
+                int cantidadStock = rs.getInt("cantidad_stock");                
+                int idCategoria = rs.getInt("id_categoria");
+                int idProveedor = rs.getInt("id_proveedor");
+                
+                Producto producto = new Producto(codigoProducto, descripcionProducto, null, precioCompra, precioVenta, cantidadStock, idProveedor, idCategoria);
+                listaProductos.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally{
+            Conexion.close(conn);
+            Conexion.close(pstm);
+            Conexion.close(rs);
+        }
+        return listaProductos;
 	}
 
 	@Override
