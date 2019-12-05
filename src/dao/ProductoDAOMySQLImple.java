@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ public class ProductoDAOMySQLImple implements ProductoDAO {
 	Connection conn = null;
 	PreparedStatement pstm = null;
 	ResultSet rs = null;
+	Statement st = null;
 	
 	@Override
 	public void insertarProducto(Producto producto) {
@@ -209,8 +211,44 @@ public class ProductoDAOMySQLImple implements ProductoDAO {
 
 	@Override
 	public ArrayList<Producto> obtenerProductosPorCriterios(String criterio) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Producto> listaProductos = new ArrayList<Producto>();
+        try {
+            conn = Conexion.getConnection();
+            
+            String sql = "SELECT * FROM productos  WHERE codigo_producto LIKE '" + criterio + "%' "
+                    + "OR descripcion_producto LIKE '%" + criterio + "%' ORDER BY descripcion_producto";
+            
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                String codigoProducto = rs.getString("codigo_producto");
+                String descripcionProducto= rs.getString("descripcion_producto");
+                
+                int cantidadStock= rs.getInt("cantidad_stock");
+                
+                double precioCompra = rs.getDouble("precio_compra");
+                double precioVenta = rs.getDouble("precio_venta");
+                int idCategoria = rs.getInt("id_categoria");
+                int idProveedor = rs.getInt("id_proveedor");
+                
+                
+                
+                Producto producto = new Producto(codigoProducto, descripcionProducto, null, precioCompra, precioVenta, cantidadStock, idProveedor, idCategoria);
+                
+                listaProductos.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally{
+            Conexion.close(conn);
+            Conexion.close(pstm);
+            Conexion.close(rs);
+        }
+        
+        return listaProductos;
 	}
 
 	@Override
