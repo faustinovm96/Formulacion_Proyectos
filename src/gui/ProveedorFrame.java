@@ -3,12 +3,15 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -39,7 +42,7 @@ public class ProveedorFrame extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProveedorFrame dialog = new ProveedorFrame();
+					ProveedorFrame dialog = new ProveedorFrame(new JFrame(), true);
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e) {
@@ -52,7 +55,8 @@ public class ProveedorFrame extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ProveedorFrame() {
+	public ProveedorFrame(Frame parent, boolean modal) {
+		super(parent, modal);
 		initGUI();
 		
 		setLocationRelativeTo(null);

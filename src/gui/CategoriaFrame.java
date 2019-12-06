@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -18,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
@@ -43,7 +46,7 @@ public class CategoriaFrame extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			CategoriaFrame dialog = new CategoriaFrame();
+			CategoriaFrame dialog = new CategoriaFrame(new JFrame(),  true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -54,7 +57,8 @@ public class CategoriaFrame extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CategoriaFrame() {
+	public CategoriaFrame(Frame parent, boolean modal) {
+		super(parent, modal);
 		setTitle("Nueva Categor\u00EDa");
 		initGUI();
 		

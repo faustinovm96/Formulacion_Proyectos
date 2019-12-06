@@ -83,12 +83,24 @@ public class Principal extends JFrame {
 
 		});
 		btnVentas.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		btnInventario = new JButton("Inventario");
+		btnInventario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnInventarioActionPerformed();
+			}
+
+			
+		});
+		btnInventario.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GroupLayout gl_panelMenu = new GroupLayout(panelMenu);
 		gl_panelMenu.setHorizontalGroup(
 			gl_panelMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelMenu.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnVentas, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+					.addGroup(gl_panelMenu.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnVentas, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+						.addComponent(btnInventario, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		gl_panelMenu.setVerticalGroup(
@@ -96,23 +108,39 @@ public class Principal extends JFrame {
 				.addGroup(gl_panelMenu.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnVentas, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(556, Short.MAX_VALUE))
+					.addGap(33)
+					.addComponent(btnInventario, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(457, Short.MAX_VALUE))
 		);
 		panelMenu.setLayout(gl_panelMenu);
 		contentPane.setLayout(gl_contentPane);
 	}
 	
 	VentasFrame ventas;
+	InventarioFrame inventario;
+	
 	private JDesktopPane contenedorPrincipal;
+	private JButton btnInventario;
 	
 	private void btnVentasActionPerformed() {
-		if(ventas == null) {
+		if(ventas == null || inventario == null) {
 			ventas = new VentasFrame();
 			contenedorPrincipal.add(ventas);
 			contenedorPrincipal.getDesktopManager().maximizeFrame(ventas);
 			ventas.setVisible(true);
 		}else {
 			contenedorPrincipal.getDesktopManager().maximizeFrame(ventas);
+		}
+	}
+	
+	private void btnInventarioActionPerformed() {
+		if(ventas == null || inventario == null) {
+			inventario = new InventarioFrame();
+			contenedorPrincipal.add(inventario);
+			contenedorPrincipal.getDesktopManager().maximizeFrame(inventario);
+			inventario.setVisible(true);
+		}else {
+			contenedorPrincipal.getDesktopManager().maximizeFrame(inventario);
 		}
 	}
 }

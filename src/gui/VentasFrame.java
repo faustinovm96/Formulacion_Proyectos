@@ -55,8 +55,6 @@ public class VentasFrame extends JInternalFrame {
 	private JList<Producto> listaBusqueda;
 	private JTable tablaVentas;
 	private JButton btnQuitarProducto;
-	private JPanel panel;
-	private JLabel labelImagen;
 	private JLabel lblVentaTotal;
 	private JLabel lblPagoCon;
 	private JLabel labelSumatoria;
@@ -77,6 +75,8 @@ public class VentasFrame extends JInternalFrame {
 	DefaultListModel<Producto> modeloListaProductos = new DefaultListModel<Producto>();
 	private ProductoDAO productoDAO = new ProductoDAOMySQLImple();
 	private VentaDAO ventaDAO = new VentaDAOMySQLImple();
+	private JLabel labelImagen;
+	private JPanel panel;
 	
 	
 	
@@ -172,9 +172,6 @@ public class VentasFrame extends JInternalFrame {
 		});
 		btnCancelarVenta.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
-		panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(100, 149, 237)));
-		
 		lblVentaTotal = new JLabel("Venta Total:");
 		lblVentaTotal.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
@@ -187,8 +184,6 @@ public class VentasFrame extends JInternalFrame {
 		txtPagarCon = new JTextField();
 		txtPagarCon.setColumns(10);
 		
-		labelImagen = new JLabel("");
-		
 		btnRealizarVenta = new JButton("Realizar Venta");
 		btnRealizarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -196,6 +191,8 @@ public class VentasFrame extends JInternalFrame {
 			}
 		});
 		btnRealizarVenta.setFont(new Font("Tahoma", Font.BOLD, 42));
+		
+		panel = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -204,81 +201,92 @@ public class VentasFrame extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
 								.addComponent(lblBuscarProducto)
-								.addComponent(txtBuscarProducto, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+								.addComponent(txtBuscarProducto, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(btnCancelarVenta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(btnQuitarProducto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE))
-							.addGap(10))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblPagoCon)
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblVentaTotal)
-									.addGap(28)
-									.addComponent(labelSumatoria, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)))
-							.addGap(21))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE))
+									.addGap(10))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblPagoCon)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblVentaTotal)
+											.addGap(28)
+											.addComponent(labelSumatoria, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)))
+									.addGap(21))))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(10))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblVentaTotal)
-									.addGap(68))
-								.addComponent(labelSumatoria, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblPagoCon)
-							.addGap(18)
-							.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-							.addGap(24)
-							.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(16)
-							.addComponent(lblBuscarProducto)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(txtBuscarProducto, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+									.addGap(191)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblVentaTotal)
+											.addGap(68))
+										.addComponent(labelSumatoria, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblPagoCon)
+									.addGap(18)
+									.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+									.addGap(24)
+									.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblBuscarProducto)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnQuitarProducto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnCancelarVenta, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
-							.addGap(39)
-							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(51, Short.MAX_VALUE))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(txtBuscarProducto, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnQuitarProducto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(btnCancelarVenta, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
+									.addGap(39)
+									.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(41, Short.MAX_VALUE))
 		);
+		
+		labelImagen = new JLabel("");
+		labelImagen.setBackground(SystemColor.textHighlight);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(203)
-					.addComponent(labelImagen))
+					.addContainerGap()
+					.addComponent(labelImagen, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(5)
-					.addComponent(labelImagen))
+					.addContainerGap()
+					.addComponent(labelImagen, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 		
