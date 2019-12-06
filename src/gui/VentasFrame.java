@@ -57,7 +57,6 @@ public class VentasFrame extends JInternalFrame {
 	private JButton btnQuitarProducto;
 	private JPanel panel;
 	private JLabel labelImagen;
-	private JPanel panel_1;
 	private JLabel lblVentaTotal;
 	private JLabel lblPagoCon;
 	private JLabel labelSumatoria;
@@ -83,7 +82,7 @@ public class VentasFrame extends JInternalFrame {
 	
 	/**
 	 * Launch the application.
-	 
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -95,7 +94,7 @@ public class VentasFrame extends JInternalFrame {
 				}
 			}
 		});
-	}*/
+	}
 
 	/**
 	 * Create the frame.
@@ -139,8 +138,6 @@ public class VentasFrame extends JInternalFrame {
 		setTitle("Venta");
 		setBounds(100, 100, 1033, 576);
 		
-		panel_1 = new JPanel();
-		
 		JLabel lblBuscarProducto = new JLabel("Buscar Producto:");
 		lblBuscarProducto.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
@@ -178,37 +175,81 @@ public class VentasFrame extends JInternalFrame {
 		panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(100, 149, 237)));
 		
+		lblVentaTotal = new JLabel("Venta Total:");
+		lblVentaTotal.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
-		panel_1.setBorder(new LineBorder(SystemColor.activeCaptionBorder, 1, true));
+		labelSumatoria = new JLabel("0.00");
+		labelSumatoria.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		
+		lblPagoCon = new JLabel("Pago con:");
+		lblPagoCon.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		txtPagarCon = new JTextField();
+		txtPagarCon.setColumns(10);
+		
+		labelImagen = new JLabel("");
+		
+		btnRealizarVenta = new JButton("Realizar Venta");
+		btnRealizarVenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnRealizarVentaActionPerformed();
+			}
+		});
+		btnRealizarVenta.setFont(new Font("Tahoma", Font.BOLD, 42));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
 								.addComponent(lblBuscarProducto)
-								.addComponent(txtBuscarProducto, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+								.addComponent(txtBuscarProducto, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
 							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(btnCancelarVenta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnQuitarProducto, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE))
+								.addComponent(btnQuitarProducto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
-							.addGap(50))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE))
+							.addGap(10))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 382, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPagoCon)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblVentaTotal)
+									.addGap(28)
+									.addComponent(labelSumatoria, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)))
+							.addGap(21))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+							.addGap(11)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblVentaTotal)
+									.addGap(68))
+								.addComponent(labelSumatoria, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblPagoCon)
+							.addGap(18)
+							.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addGap(24)
+							.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(16)
 							.addComponent(lblBuscarProducto)
@@ -222,75 +263,26 @@ public class VentasFrame extends JInternalFrame {
 									.addComponent(btnQuitarProducto, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addComponent(btnCancelarVenta, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
-							.addGap(18)
-							.addComponent(scrollPane_1, 0, 0, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(102, Short.MAX_VALUE))
+							.addGap(39)
+							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(51, Short.MAX_VALUE))
 		);
-		
-		lblVentaTotal = new JLabel("Venta Total:");
-		lblVentaTotal.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		
-		lblPagoCon = new JLabel("Pago con:");
-		lblPagoCon.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		
-		labelSumatoria = new JLabel("0.00");
-		labelSumatoria.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		
-		txtPagarCon = new JTextField();
-		txtPagarCon.setEditable(false);
-		txtPagarCon.setColumns(10);
-		
-		btnRealizarVenta = new JButton("Realizar Venta");
-		btnRealizarVenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnRealizarVentaActionPerformed();
-			}
-		});
-		btnRealizarVenta.setFont(new Font("Tahoma", Font.BOLD, 42));
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 362, Short.MAX_VALUE)
-						.addComponent(txtPagarCon, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblPagoCon)
-								.addComponent(lblVentaTotal))
-							.addGap(18)
-							.addComponent(labelSumatoria, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)))
-					.addContainerGap())
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(203)
+					.addComponent(labelImagen))
 		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblVentaTotal)
-							.addPreferredGap(ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-							.addComponent(lblPagoCon))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(35)
-							.addComponent(labelSumatoria, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(16)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtPagarCon, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(30)
-					.addComponent(btnRealizarVenta, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(5)
+					.addComponent(labelImagen))
 		);
-		panel_1.setLayout(gl_panel_1);
+		panel.setLayout(gl_panel);
 		
-		labelImagen = new JLabel("");
-		panel.add(labelImagen);
+		
 		
 		tablaVentas = new JTable();
 		tablaVentas.setModel(modeloTablaProductos);
@@ -314,6 +306,7 @@ public class VentasFrame extends JInternalFrame {
 		});
 		scrollPane.setViewportView(listaBusqueda);
 		getContentPane().setLayout(groupLayout);
+	
 	}
 
 	private void tableKeyReleasedEvent(KeyEvent e) {
@@ -343,6 +336,7 @@ public class VentasFrame extends JInternalFrame {
 		ImageIcon imagenProducto = null;
 		
 		try {
+			
 			InputStream is = productoDAO.buscarFoto(producto);
 			BufferedImage bi = ImageIO.read(is);
 			imagenProducto = new ImageIcon(bi);
@@ -356,9 +350,10 @@ public class VentasFrame extends JInternalFrame {
 			ImageIcon iconRedimensionado = new ImageIcon(imgRedimensionada);
 			
 			labelImagen.setIcon(iconRedimensionado);
+
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -452,6 +447,8 @@ public class VentasFrame extends JInternalFrame {
 			
 			ventaDAO.insertarDetalleVenta(detalle);
 			detalles.add(detalle);
+			
+			
 		}
 		
 		for(int i = numRows - 1; i >= 0; i--) {
@@ -461,10 +458,11 @@ public class VentasFrame extends JInternalFrame {
 		labelSumatoria.setText("0");
 		
 		if(!pagoConStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "<html><h1 style='font-size:200 px; color: blue'>"+cambio+"</h1></html>", "El cambio es: " , 1);
+			 JOptionPane.showMessageDialog(this, "<html><h3 style='font-size:50 px; color: blue'>"+cambio+"</h3></html>", "El cambio es: " , 1);
 		}
 		
 		txtPagarCon.setText("");
 		
+		JOptionPane.showMessageDialog(null, "Venta Registrada con éxito...");
 	}
 }
