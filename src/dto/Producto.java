@@ -89,4 +89,8 @@ public class Producto {
 		this.idCategoria = idCategoria;
 	}
 	
+	@Override
+    public String toString(){
+        return this.descripcionProducto;
+    } 
 }

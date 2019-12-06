@@ -27,8 +27,8 @@ public class VentaDAOMySQLImple implements VentaDAO {
             
             pstm = conn.prepareStatement(sql);
             
-            pstm.setDouble(1, venta.getMontoVenta());
-            pstm.setDate(2, venta.getFecha());
+            pstm.setDate(1, venta.getFecha());
+            pstm.setDouble(2, venta.getMontoVenta());
             
             pstm.executeUpdate();
             
@@ -58,7 +58,7 @@ public class VentaDAOMySQLImple implements VentaDAO {
 		try {
             conn = Conexion.getConnection();
             
-            String sql = "INSERT INTO detalle_venta (id_venta, codigo_producto, cantidad) values (?,?,?)";
+            String sql = "INSERT INTO detalle_ventas (id_venta, codigo_producto, cantidad) values (?,?,?)";
             
             pstm = conn.prepareStatement(sql);
             

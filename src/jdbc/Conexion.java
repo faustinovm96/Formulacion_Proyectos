@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class Conexion {
 	
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sistema_ventas";
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sistema_ventas?useSSL=false";
 	
 	private static final String JDBC_USER = "root";
 	
@@ -25,7 +25,7 @@ public class Conexion {
 				Class<?> jdbcClassName = Class.forName(JDBC_DRIVER);
 				driver = (Driver)jdbcClassName.newInstance();
 				DriverManager.registerDriver(driver);
-				System.out.println("Conexion Exitosa...");
+				//System.out.println("Conexion Exitosa...");
 			} catch (SQLException e) {
 				// TODO: handle exception
 			} catch (ClassNotFoundException e) {

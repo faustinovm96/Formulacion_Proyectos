@@ -71,8 +71,7 @@ public class Proveedor {
 
 	@Override
 	public String toString() {
-		return "Proveedor [idProveedor=" + idProveedor + ", nombres=" + nombres + ", apellidos=" + apellidos
-				+ ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + "]";
+		return this.nombres;
 	}
 	
 	public String getCedularuc() {
@@ -83,6 +82,6 @@ public class Proveedor {
 		this.cedularuc = cedularuc;
 	}
 
-
+	
 	
 }

@@ -2,21 +2,21 @@ package dto;
 
 public class DetalleVenta {
 	
-	private int idVenta;
+	private Long idVenta;
 	private String codigoProducto;
 	private int cantidad;
 	
-	public DetalleVenta(int idVenta, String codigoProducto, int cantidad) {
+	public DetalleVenta(Long idVenta, String codigoProducto, int cantidad) {
 		this.idVenta = idVenta;
 		this.codigoProducto = codigoProducto;
 		this.cantidad = cantidad;
 	}
 
-	public int getIdVenta() {
+	public Long getIdVenta() {
 		return idVenta;
 	}
 
-	public void setIdVenta(int idVenta) {
+	public void setIdVenta(Long idVenta) {
 		this.idVenta = idVenta;
 	}
 

@@ -93,7 +93,7 @@ public class ProductoDAOMySQLImple implements ProductoDAO {
 	        try {
 	            conn = Conexion.getConnection();
 	            
-	            String sql = "Select foto from productos where codigo_producto = ?";
+	            String sql = "SELECT foto FROM productos WHERE codigo_producto = ?";
 	            
 	            pstm = conn.prepareStatement(sql);
 	            pstm.setString(1, producto.getCodigoProducto());
@@ -215,7 +215,7 @@ public class ProductoDAOMySQLImple implements ProductoDAO {
         try {
             conn = Conexion.getConnection();
             
-            String sql = "SELECT * FROM productos  WHERE codigo_producto LIKE '" + criterio + "%' "
+            String sql = "SELECT * FROM productos WHERE codigo_producto LIKE '%" + criterio + "%' "
                     + "OR descripcion_producto LIKE '%" + criterio + "%' ORDER BY descripcion_producto";
             
             st = conn.createStatement();

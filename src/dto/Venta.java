@@ -12,6 +12,12 @@ public class Venta {
 		this.fecha = fecha;
 		this.montoVenta = montoVenta;
 	}
+	
+	public Venta(Date fecha, double montoVenta) {
+		this.fecha = fecha;
+		this.montoVenta = montoVenta;
+	}
+	
 
 	public int getIdVenta() {
 		return idVenta;
