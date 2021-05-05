@@ -105,6 +105,7 @@ public class ProductoFrame extends JDialog {
 		
 		super(parent, modal);
 		
+		
 		modeloCategorias = new DefaultComboBoxModel<Categoria>();
 		modeloProveedores = new DefaultComboBoxModel<Proveedor>();
 		categoriaDAO = new CategoriaDAOMySQLImple();
@@ -123,6 +124,7 @@ public class ProductoFrame extends JDialog {
 			cargarProducto(producto, icon);
 		}
 
+		setLocationRelativeTo(null);
 	}
 
 	
