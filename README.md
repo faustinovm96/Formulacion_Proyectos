@@ -1,5 +1,3 @@
 # Formulacion_Proyectos
 
-Tarea de Programaciòn para Formulación de Proyectos
-
-El COlorado se la comeee :-) 
+Proyecto realizado como demostración para la materia Formulación de Proyectos - Año 2019
